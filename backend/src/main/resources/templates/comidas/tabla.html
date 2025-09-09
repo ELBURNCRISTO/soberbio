@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Comidas - Tabla</title></head>
+<body>
+<h1>Comidas (tabla)</h1>
+<p><a href="/comidas/cards">Ver tarjetas</a></p>
+<table border="1">
+  <thead><tr><th>ID</th><th>Imagen</th><th>Nombre</th><th>Descripción</th><th>Precio</th><th>Detalle</th></tr></thead>
+  <tbody>
+    <tr th:each="c : ${comidas}">
+      <td th:text="${c.id}"></td>
+      <td><img th:src="${c.imgUrl}" style="max-height:60px"></td>
+      <td th:text="${c.nombre}"></td>
+      <td th:text="${c.descripcion}"></td>
+      <td th:text="${c.precio}"></td>
+      <td><a th:href="@{'/comidas/' + ${c.id}}">Ver</a></td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
