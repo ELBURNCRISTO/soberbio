@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="utf-8"><title>Detalle</title></head>
+<body>
+  <div th:replace="~{layout :: layout(~{::content})}">
+    <th:block th:fragment="content">
+      <div th:if="${p!=null}">
+        <img th:src="${p.imgUrl}" style="max-width:320px">
+        <h2 th:text="${p.nombre}"></h2>
+        <p th:text="${p.descripcion}"></p>
+        <form method="post" action="/carrito/add">
+          <input type="hidden" name="productoId" th:value="${p.id}">
+          <label>Cantidad <input type="number" min="1" name="cantidad" value="1"></label>
+          <fieldset>
+            <legend>Adicionales</legend>
+            <label th:each="a : ${adicionales}">
+              <input type="checkbox" name="adicional" th:value="${a.id}">
+              <span th:text="${a.nombre + (a.precio>0 ? ' (+$'+a.precio+')':'' )}"></span>
+            </label>
+          </fieldset>
+          <button>Agregar al carrito</button>
+        </form>
+      </div>
+      <p th:if="${p==null}">Producto no encontrado</p>
+    </th:block>
+  </div>
+</body>
+</html>

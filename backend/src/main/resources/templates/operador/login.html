@@ -1,0 +1,10 @@
+<th:block th:with="title='Operador', content='op_login :: content'" th:insert="layout :: *"></th:block>
+<th:block id="op_login" th:fragment="content">
+  <h2>Ingreso Operador</h2>
+  <form method="post" action="/operador/login">
+    <input name="username" placeholder="Usuario">
+    <input name="password" placeholder="Contraseña" type="password">
+    <button>Entrar</button>
+  </form>
+  <p th:if="${error}" th:text="${error}" style="color:#f55"></p>
+</th:block>

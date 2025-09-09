@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Carrito</title>
+</head>
+<body>
+  <div th:replace="~{layout :: layout(~{::content})}">
+    <th:block th:fragment="content">
+      <h2>Carrito</h2>
+
+      <!-- usa los métodos del Cart: empty() y total() -->
+      <table th:if="${!cart.empty()}">
+        <tr>
+          <th>Producto</th>
+          <th>Cant</th>
+          <th>Adicionales</th>
+          <th>Subtotal</th>
+        </tr>
+        <tr th:each="it : ${cart.items}">
+          <td th:text="${it.producto.nombre}"></td>
+          <td th:text="${it.cantidad}"></td>
+          <td>
+            <span th:each="a : ${it.adicionales}" th:text="${a.nombre}" style="margin-right:6px"></span>
+          </td>
+          <td th:text="'$' + ${it.subtotal()}"></td>
+        </tr>
+        <tr>
+          <td colspan="3" style="text-align:right"><strong>Total</strong></td>
+          <td th:text="'$' + ${cart.total()}"></td>
+        </tr>
+      </table>
+
+      <p th:if="${cart.empty()}">Tu carrito está vacío.</p>
+
+      <form method="post" action="/carrito/confirmar">
+        <button th:if="${!cart.empty()}">Confirmar pedido</button>
+      </form>
+    </th:block>
+  </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+spring:
+  thymeleaf:
+    cache: false
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:soberbio;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+server:
+  error:
+    include-message: always

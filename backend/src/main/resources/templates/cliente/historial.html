@@ -1,0 +1,11 @@
+<th:block th:with="title='Historial', content='c_hist :: content'" th:insert="layout :: *"></th:block>
+<th:block id="c_hist" th:fragment="content">
+  <h2>Historial</h2>
+  <table>
+    <tr><th>ID</th><th>Entrega</th></tr>
+    <tr th:each="p : ${pedidos}">
+      <td th:text="${p.id}"></td>
+      <td th:text="${p.fechaEntrega}"></td>
+    </tr>
+  </table>
+</th:block>

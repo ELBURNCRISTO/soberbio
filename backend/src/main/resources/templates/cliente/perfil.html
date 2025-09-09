@@ -1,0 +1,8 @@
+<th:block th:with="title='Perfil', content='c_perfil :: content'" th:insert="layout :: *"></th:block>
+<th:block id="c_perfil" th:fragment="content">
+  <h2>Mi perfil</h2>
+  <p><strong th:text="${c.nombre + ' ' + c.apellido}"></strong></p>
+  <p th:text="${c.email}"></p>
+  <p th:text="${c.telefono}"></p>
+  <p th:text="${c.direccion}"></p>
+</th:block>

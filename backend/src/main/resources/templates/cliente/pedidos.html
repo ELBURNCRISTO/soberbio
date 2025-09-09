@@ -1,0 +1,13 @@
+<th:block th:with="title='Mis pedidos', content='c_ped :: content'" th:insert="layout :: *"></th:block>
+<th:block id="c_ped" th:fragment="content">
+  <h2>Pedidos activos</h2>
+  <table>
+    <tr><th>ID</th><th>Estado</th><th>Creación</th></tr>
+    <tr th:each="p : ${pedidos}">
+      <td th:text="${p.id}"></td>
+      <td th:text="${p.estado}"></td>
+      <td th:text="${p.fechaCreacion}"></td>
+    </tr>
+  </table>
+  <p><a href="/cliente/historial">Ver historial</a> · <a href="/cliente/perfil">Mi perfil</a></p>
+</th:block>

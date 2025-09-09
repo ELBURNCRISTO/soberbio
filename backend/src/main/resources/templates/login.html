@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+</head>
+<body>
+  <div th:replace="~{layout :: layout(~{::content})}">
+    <th:block th:fragment="content">
+      <h2>Ingreso Cliente</h2>
+      <form method="post" action="/login">
+        <label>Correo <input name="email" type="email" required></label>
+        <label>Contraseña <input name="password" type="password" required></label>
+        <button>Entrar</button>
+      </form>
+      <p th:if="${error}" th:text="${error}" style="color:#f55"></p>
+      <p>¿No tienes cuenta? <a href="/signup">Regístrate</a></p>
+    </th:block>
+  </div>
+</body>
+</html>

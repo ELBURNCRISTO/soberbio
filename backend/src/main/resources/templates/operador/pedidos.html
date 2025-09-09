@@ -1,0 +1,22 @@
+<th:block th:with="title='Operador', content='op_ped :: content'" th:insert="layout :: *"></th:block>
+<th:block id="op_ped" th:fragment="content">
+  <h2>Pedidos activos</h2>
+  <table>
+    <tr><th>ID</th><th>Estado</th><th>Acciones</th><th>Domiciliario</th></tr>
+    <tr th:each="p : ${pedidos}">
+      <td th:text="${p.id}"></td>
+      <td th:text="${p.estado}"></td>
+      <td>
+        <form th:if="${p.estado.name()=='RECIBIDO'}" th:action="@{'/operador/'+${p.id}+'/cocinar'}" method="post"><button>Cocinar</button></form>
+        <form th:if="${p.estado.name()=='COCINANDO'}" th:action="@{'/operador/'+${p.id}+'/enviar'}" method="post">
+          <select name="domiciliarioId" required>
+            <option th:each="d:${domiciliarios}" th:value="${d.id}" th:text="${d.nombre}"></option>
+          </select>
+          <button>Enviar</button>
+        </form>
+        <form th:if="${p.estado.name()=='ENVIADO'}" th:action="@{'/operador/'+${p.id}+'/entregar'}" method="post"><button>Entregar</button></form>
+      </td>
+      <td th:text="${p.domiciliario!=null ? p.domiciliario.nombre : '-'}"></td>
+    </tr>
+  </table>
+</th:block>
